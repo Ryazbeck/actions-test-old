@@ -1,0 +1,36 @@
+name: Wiki Sync
+
+on:
+  push:
+    branches: [ main ]
+    path:
+      - 'wiki/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v3
+        with:
+          path: wiki
+          fetch-depth: 0
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+            ssh-private-key: ${{ secrets.WIKI_KEY }}
+      - name: Clone platform.wiki repo
+        run: |
+          git clone git@github.com:Ryazbeck/actions-test.wiki.git
+      - name: Add wiki path as remote for platform.wiki
+        run: |
+          cd actions-test.wiki
+          yes | cp -rf ../actions-test/wiki/. .
+      - name: Pull wiki into actions-test.wiki and push to master
+        run: |
+          cd actions-test.wiki
+          git config --global user.email "russellyazbeck@gmail.com"
+          git config --global user.name "Russell Yazbeck"
+          git add .
+          git commit -m 'test'
+          git push origin master

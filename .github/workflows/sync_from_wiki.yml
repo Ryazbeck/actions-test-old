@@ -1,3 +1,5 @@
+name: "Sync updates in git.wiki to the repo wiki folder"
+
 on:
   gollum
 

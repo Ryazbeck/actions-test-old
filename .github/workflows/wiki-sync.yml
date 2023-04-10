@@ -8,6 +8,7 @@ on:
       - "docs/**"
   repository_dispatch:
     types: [docs]
+  gollum:
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

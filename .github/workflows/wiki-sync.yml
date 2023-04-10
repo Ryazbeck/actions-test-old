@@ -20,7 +20,9 @@ jobs:
     if: github.event_name != 'gollum'
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          repository: Ryazbeck/actions-test.wiki
       - name: Sync docs to wiki
         uses: newrelic/wiki-sync-action@main
         with:

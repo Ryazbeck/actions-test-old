@@ -1,0 +1,16 @@
+on:
+  gollum
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout actions-test.wiki
+        uses: actions/checkout@v3
+        with:
+          repository: Ryazbeck/actions-test.wiki
+          path: actions-test.wiki
+          fetch-depth: 0
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.7.0
+        with:

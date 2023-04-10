@@ -3,9 +3,9 @@ name: "Automerge wiki updates to main"
 on:
   push:
     branches:
-      - 'automerge/*'
+      - 'automerge'
     paths:
-      - 'wiki/**'
+      - 'docs/**'
 
 jobs:
   automerge:
@@ -17,4 +17,4 @@ jobs:
         name: automerge
         uses: "pascalgn/automerge-action@v0.15.6"
         env:
-          GITHUB_TOKEN: "${{ secrets.WIKI_KEY }}"
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"

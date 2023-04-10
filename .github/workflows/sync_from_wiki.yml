@@ -1,0 +1,32 @@
+on:
+  gollum
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout actions-test.wiki
+        uses: actions/checkout@v3
+        with:
+          repository: Ryazbeck/actions-test.wiki
+          path: actions-test.wiki
+          fetch-depth: 0
+      - name: Start SSH agent
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.WIKI_KEY }}
+      - name: Clone wiki repo
+        run: |
+          git clone git@github.com:Ryazbeck/actions-test.git
+      - name: Add platform.wiki path as remote for wiki
+        run: |
+          cd actions-test/wiki
+          git remote add actions-test.wiki ../../actions-test.wiki/.git
+      - name: Pull platform.wiki into wiki and push to main
+        run: |
+          cd actions-test/wiki
+          git config pull.rebase true
+          git config --global user.email "russellyazbeck@gmail.com"
+          git config --global user.name "Russell Yazbeck"
+          git pull actions-test.wiki master
+          git push origin main

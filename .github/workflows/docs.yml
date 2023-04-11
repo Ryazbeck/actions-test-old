@@ -43,7 +43,7 @@ jobs:
       - name: Actions Wiki
         uses: spenserblack/actions-wiki@v0.1.1
         with:
-          path: docs
+          path: "/docs"
           token: ${{ env.GIT_AUTHOR_EMAIL }}:${{ secrets.GITHUB_TOKEN }}
       - name: Checkout
         uses: actions/checkout@v3

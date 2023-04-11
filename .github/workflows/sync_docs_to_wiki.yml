@@ -20,9 +20,6 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
-        with:
-          token: ${{ env.GITHUB_TOKEN }} # allows us to push back to repo
-          ref: main
       - name: Sync docs to wiki
         uses: newrelic/wiki-sync-action@main
         with:

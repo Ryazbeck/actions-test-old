@@ -1,9 +1,9 @@
-name: "Automerge wiki updates to main"
+name: "Automerge docs updates on 'wiki' branch to main"
 
 on:
   push:
     branches:
-      - 'automerge'
+      - 'wiki'
     paths:
       - 'docs/**'
 

@@ -3,7 +3,7 @@ name: "Automerge docs updates on 'wiki' branch to main"
 on:
   push:
     branches:
-      - 'wiki'
+      - 'none'
     paths:
       - 'docs/**'
 

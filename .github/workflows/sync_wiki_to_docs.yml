@@ -2,7 +2,8 @@ name: Sync wiki to docs
 
 on:
   push: 
-    branches: "none"
+    branches:
+      - none
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

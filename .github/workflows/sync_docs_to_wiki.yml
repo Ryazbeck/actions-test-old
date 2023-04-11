@@ -28,4 +28,4 @@ jobs:
           token: ${{ env.GITHUB_TOKEN }}
           gitAuthorName: ${{ env.GIT_AUTHOR_NAME }}
           gitAuthorEmail: ${{ env.GIT_AUTHOR_EMAIL }}
-          branch: wiki
+          branch: master

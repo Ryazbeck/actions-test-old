@@ -9,6 +9,9 @@ on:
   repository_dispatch:
     types: [docs]
   gollum:
+  
+permissions:
+  contents: write
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
@@ -37,20 +40,21 @@ jobs:
           git config --local user.name "${{ env.GIT_AUTHOR_EMAIL }}"
           git add .
           git diff-index --quiet HEAD || git commit -m "Sync Docs changes to Wiki" && git push
-#     name: Sync Docs changes to Wiki
-#     if: github.event_name != 'gollum'
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Checkout Repo
-#         uses: actions/checkout@v3
-#       - name: Sync docs to wiki
-#         uses: newrelic/wiki-sync-action@main
-#         with:
-#           source: docs
-#           destination: wiki
-#           token: ${{ secrets.WIKI_KEY }}
-#           gitAuthorName: ${{ env.GIT_AUTHOR_NAME }}
-#           gitAuthorEmail: ${{ env.GIT_AUTHOR_EMAIL }}
+      - name: Actions Wiki
+        uses: spenserblack/actions-wiki@v0.1.1
+        with:
+          path: docs
+          token: ${{ env.GIT_AUTHOR_EMAIL }}:${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Sync Docs changes to Wiki
+        uses: newrelic/wiki-sync-action@main
+        with:
+          source: docs
+          destination: wiki
+          token: ${{ secrets.WIKI_KEY }}
+          gitAuthorName: ${{ env.GIT_AUTHOR_NAME }}
+          gitAuthorEmail: ${{ env.GIT_AUTHOR_EMAIL }}
           
   job-sync-wiki-to-docs:
     name: Sync Wiki changes to Docs

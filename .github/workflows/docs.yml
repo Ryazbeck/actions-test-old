@@ -50,7 +50,7 @@ jobs:
       - name: Actions Wiki
         uses: spenserblack/actions-wiki@v0.2.0
         with:
-          path: "/docs"
+          path: docs
           token: x:${{ secrets.GITHUB_TOKEN }}
           
   job-sync-wiki-to-docs:

@@ -41,7 +41,7 @@ jobs:
           git add .
           git diff-index --quiet HEAD || git commit -m "Sync Docs changes to Wiki" && git push
       - name: Actions Wiki
-        uses: spenserblack/actions-wiki@v0.1.1
+        uses: spenserblack/actions-wiki@v0.2.0
         with:
           path: "/docs"
           token: ${{ env.GIT_AUTHOR_EMAIL }}:${{ secrets.GITHUB_TOKEN }}

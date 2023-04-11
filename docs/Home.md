@@ -1,5 +1,2 @@
-# Home
-
-## Intro
-
-lasdf
+Welcome to the actions-test wiki!
+test
